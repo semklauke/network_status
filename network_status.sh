@@ -8,7 +8,7 @@ ERASELINE=$(tput el)
 echo -e "[NETWORK]: testing...";
 sleep 1;
 while true; do
-	p=$(ping -c 1 1.1.1.1);
+	p=$(ping -c 1 -W 900 1.1.1.1 2> /dev/null);
 	if [[ $p == *"64 bytes from 1.1.1.1"* ]]; then
 		echo -n "$UPLINE$ERASELINE";
 		echo -e "[NETWORK]: Connected";
@@ -16,6 +16,6 @@ while true; do
 		echo -n "$UPLINE$ERASELINE";
 		echo -e "[NETWORK]: ${RED}Down${NC}";
 	fi
-	sleep 2;
+	sleep 1;
 
 done
